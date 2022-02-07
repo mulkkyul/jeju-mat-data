@@ -2,6 +2,7 @@
 
 [streamlit](https://streamlit.io/)를 이용한 제주도 맛집 데이터 분석 예제 입니다.
 
+데모: https://tastyjeju.herokuapp.com/
 
 
 ![](./screenshot.png)
