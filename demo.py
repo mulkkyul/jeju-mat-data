@@ -227,7 +227,7 @@ st.markdown('<p class="columnHeader"><span style=\"font-size: 90% ; color: gray\
 st.write("맛있는 데이터, 제주는 제주관광공사에서 제공하는 제주도 내 음식점별 전월 대비 매출 변화량 데이터를 이용하여 제작되었습니다. 데이터에 포함되어 있는 순위수 (RANK_CO)를 이용하여 순위를 매기고, 제주도민 매출금액 비율값과 외지인 매출금액 비율값을 이용하여, 제주도민과 외지인이 선호하는 음식점을 구분합니다.")
 st.write("")
 st.write("- 데이터셋: 관광 소비행태 데이터_카드사 음식 급상승 데이터 (2022).*제주관광공사*. Retrieved from [문화 빅데이터 플랫폼](https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=f0306b70-597a-11ec-8ee4-95f65f846b27)")
-st.write("- 소스코드: https://github.com/mulkkyul/jeju-mat-data")
+st.write("- 소스코드: https://github.com/mulkkyul/tastyjeju")
 st.write("- 맛있는 데이터, 제주를 만든 이야기가 궁금하다면 여기로 -> [브런치](https://brunch.co.kr/@mulkkyul)")
 st.write("")
 st.write("")
