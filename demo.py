@@ -57,7 +57,7 @@ st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', uns
 list_foodType = ['모두','한식','음료','간식','양식','아시아음식','패스트푸드','주점및주류판매','부페']
 foodType = st.radio("음식 종류", options=list_foodType)
 
-list_region = ['전지역','구좌읍','남원읍','대정읍','서귀포시내','성산읍','안덕면','애월읍','우도면','제주시내','조천읍','표선면','한경면','한림면']
+list_region = ['전지역','구좌읍','남원읍','대정읍','서귀포시내','성산읍','안덕면','애월읍','우도면','제주시내','조천읍','표선면','한경면','한림읍']
 region = st.radio("지역", options=list_region)
 
 st.write("")
