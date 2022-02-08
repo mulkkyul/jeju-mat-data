@@ -1,6 +1,5 @@
 import streamlit as st
 from PIL import Image
-import hydralit_components as hc
 import pandas as pd
 
 # =====================================================================================
@@ -45,9 +44,6 @@ def load_data(filename):
     df = pd.read_csv(filename, header=0, delimiter=',')
     return df
 
-#df_data_raw = load_data('./rawData/JT_SHP_SALES_VARTION_LIST_202112.csv').sort_values(by=["RANK_CO"], ascending=False)
-
-#df_data_raw = load_data('./data_janToDec2021_top100.csv').sort_values(by=["ALL_SALES_PRICE_RATE"], ascending=False)
 df_data_raw = load_data('./data_julyToDec2021.csv').sort_values(by=["ALL_SALES_PRICE_RATE"], ascending=False)
 
 
