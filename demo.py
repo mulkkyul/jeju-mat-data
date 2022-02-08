@@ -233,7 +233,7 @@ st.write("맛있는 데이터, 제주는 제주관광공사에서 제공하는 �
 st.write("")
 st.write("- 데이터셋: 관광 소비행태 데이터_카드사 음식 급상승 데이터 (2022).*제주관광공사*. Retrieved from [문화 빅데이터 플랫폼](https://www.bigdata-culture.kr/bigdata/user/data_market/detail.do?id=f0306b70-597a-11ec-8ee4-95f65f846b27)")
 st.write("- 소스코드: https://github.com/mulkkyul/jeju-mat-data")
-st.write("- 맛있는 데이터, 제주를 만든 이야기가 궁금하다면 여기로 -> [브런치](https://brunch.co.kr/@mulkkyul)")
+st.write("- 맛있는 데이터, 제주를 만든 이야기가 궁금하다면 여기로 -> [브런치 https://brunch.co.kr/@mulkkyul/103](https://brunch.co.kr/@mulkkyul/103)")
 st.write("")
 st.write("")
 st.write("by mulkkyul")
