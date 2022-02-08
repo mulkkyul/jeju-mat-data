@@ -29,6 +29,6 @@ streamlit run demo.py
 
 질문이나 건의사항은 여기 repo의 issue에 남겨주세요!
 
-맛있는 데이터 관련 브런치 글: https://brunch.co.kr/@mulkkyul
+맛있는 데이터 관련 브런치 글: https://brunch.co.kr/@mulkkyul/103
 
 
