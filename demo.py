@@ -64,6 +64,13 @@ franchise = st.checkbox("프랜차이즈 포함")
 airport = st.checkbox("제주공항 내 상점 포함")
 hotel = st.checkbox("호텔/리조트 내 식당 포함")
 
+st.write("")
+st.write("")
+
+searchKeyword = st.text_input('검색을 원한다면 검색어 입력 후 검색 버튼 클릭')
+shopSearchLink_naver = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query="
+button_clicked = st.button("검색")
+st.write("참고) 현재는 단일 키워드 검색만 가능합니다. 예) 돼지고기 -> 검색 가능, 노형동 돼지고기 -> 검색 안됨 ㅠㅠ")
 st.markdown('___')
 
 
@@ -73,10 +80,16 @@ st.markdown('___')
 list_franchise = ["한국맥도날드","버거킹","빽다방","던킨","탐앤탐스","파리바게뜨","풀바셋","에이바우트","메가엠지씨","컴포즈",
                   "투썸플레이스","커피빈","할리스","파스쿠찌","뚜레쥬르","써브웨이","파리바게트","김밥천국",
                   "(유)아웃백스테이크","롯데리아","KFC","맘스터치","도미노피자","교촌치킨","배스킨라빈스","아웃백스테이크하우스",
-                 "카페베네","이디야"]
-list_hotel = ["토스카나","한화호텔앤드리조트","제주신화월드","호반호텔앤리조트","소노캄","제주롯데시티호텔"]
+                  "카페베네","이디야","크라운베이커리"]
+list_hotel = ["토스카나","한화호텔앤드리조트","제주신화월드","호반호텔앤리조트","소노캄","제주롯데시티호텔","베이힐"]
 
 df_target = df_data_raw
+
+if(button_clicked and len(searchKeyword) > 0):
+    df_target = df_target[df_target.apply(lambda r: r.str.contains(searchKeyword).any(), axis=1)]
+
+#df.apply(lambda row: row.astype(str).str.contains('TEST').any(), axis=1)
+
 if(not franchise):
     df_target = df_target[df_target["CMPNM_NM"].str.contains('|'.join(list_franchise)) == False]
 if(not airport):
@@ -112,6 +125,9 @@ for idxCol in range(numCols):
             shopTitle = df_target["CMPNM_NM"].iloc[idxRank]
             shopAddress = df_target["SIGNGU_NM"].iloc[idxRank] + ' ' + df_target["ADSTRD_NM"].iloc[idxRank]
             shopMenu = df_target["MLSFC_NM"].iloc[idxRank] + ' ' + df_target["SCLAS_NM"].iloc[idxRank]
+            shopTitle_woBlank = shopTitle.replace(" ","+")
+            shopSearchLink = shopSearchLink_naver + shopTitle_woBlank
+
 
             popularityRatio = 2.0
             if(df_target["JJINHBT_SALES_PRICE_RATE"].iloc[idxRank] > popularityRatio * df_target["OTSD_SALES_PRICE_RATE"].iloc[idxRank]):
@@ -124,7 +140,7 @@ for idxCol in range(numCols):
                 shopPopularity = "#34a853"
                 icon = "🌴🧳"
 
-            markdown_shopTitle = f"<p class=\"shopInfo\"><span style=\"color: {shopPopularity}\"> #{idxRank+1}. {shopTitle} {icon} </span>  " \
+            markdown_shopTitle = f"<p class=\"shopInfo\"><a href={shopSearchLink}><span style=\"color: {shopPopularity}\"> #{idxRank+1}. {shopTitle}</a> {icon} </span>  " \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopMenu}</span> <br>" \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopAddress}</span></p>"
             st.markdown(markdown_shopTitle, unsafe_allow_html=True)
@@ -152,8 +168,10 @@ with cols[0]:
             shopTitle = df_target["CMPNM_NM"].iloc[idxTemp]
             shopAddress = df_target["SIGNGU_NM"].iloc[idxTemp] + ' ' + df_target["ADSTRD_NM"].iloc[idxTemp]
             shopMenu = df_target["MLSFC_NM"].iloc[idxTemp] + ' ' + df_target["SCLAS_NM"].iloc[idxTemp]
+            shopTitle_woBlank = shopTitle.replace(" ","+")
+            shopSearchLink = shopSearchLink_naver + shopTitle_woBlank
 
-            markdown_shopTitle = f"<p class=\"shopInfo\"><span style=\"color: {shopPopularity}\"> #{countShop}. {shopTitle} </span>  " \
+            markdown_shopTitle = f"<p class=\"shopInfo\"><a href={shopSearchLink}><span style=\"color: {shopPopularity}\"> #{countShop}. {shopTitle}</a> </span>  " \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopMenu}</span> <br>" \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopAddress}</span></p>"
             st.markdown(markdown_shopTitle, unsafe_allow_html=True)
@@ -174,8 +192,10 @@ with cols[1]:
             shopTitle = df_target["CMPNM_NM"].iloc[idxTemp]
             shopAddress = df_target["SIGNGU_NM"].iloc[idxTemp] + ' ' + df_target["ADSTRD_NM"].iloc[idxTemp]
             shopMenu = df_target["MLSFC_NM"].iloc[idxTemp] + ' ' + df_target["SCLAS_NM"].iloc[idxTemp]
+            shopTitle_woBlank = shopTitle.replace(" ","+")
+            shopSearchLink = shopSearchLink_naver + shopTitle_woBlank
 
-            markdown_shopTitle = f"<p class=\"shopInfo\"><span style=\"color: {shopPopularity}\"> #{countShop}. {shopTitle} </span>  " \
+            markdown_shopTitle = f"<p class=\"shopInfo\"><a href={shopSearchLink}><span style=\"color: {shopPopularity}\"> #{countShop}. {shopTitle}</a> </span>  " \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopMenu}</span> <br>" \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopAddress}</span></p>"
             st.markdown(markdown_shopTitle, unsafe_allow_html=True)
@@ -204,8 +224,11 @@ with cols[2]:
             shopTitle = df_target["CMPNM_NM"].iloc[idxTemp]
             shopAddress = df_target["SIGNGU_NM"].iloc[idxTemp] + ' ' + df_target["ADSTRD_NM"].iloc[idxTemp]
             shopMenu = df_target["MLSFC_NM"].iloc[idxTemp] + ' ' + df_target["SCLAS_NM"].iloc[idxTemp]
+            shopTitle_woBlank = shopTitle.replace(" ","+")
+            shopSearchLink = shopSearchLink_naver + shopTitle_woBlank
 
-            markdown_shopTitle = f"<p class=\"shopInfo\"><span style=\"color: {shopPopularity}\"> #{countShop}. {shopTitle} </span>  " \
+
+            markdown_shopTitle = f"<p class=\"shopInfo\"><a href={shopSearchLink}><span style=\"color: {shopPopularity}\"> #{countShop}. {shopTitle}</a> </span>  " \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopMenu}</span> <br>" \
                                  f"<span style=\"font-size: 60% ; color: gray\">{shopAddress}</span></p>"
             st.markdown(markdown_shopTitle, unsafe_allow_html=True)
